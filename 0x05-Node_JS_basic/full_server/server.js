@@ -1,13 +1,14 @@
-import express from 'express';
-import router from './routes';
+const express = require('express');
 
-const host = '127.0.0.1';
-const port = 1245;
+const router = require('./routes/index');
+
 const app = express();
-app.use(router);
+const port = 1245;
 
-app.listen(port, host, () => {
-  console.log(`Server is live, running at http://${host}:${port}`);
-});
+app.use('/', router);
+app.use('/students', router);
+app.use('/students/:major', router);
+
+app.listen(port);
 
 export default app;
